@@ -19,7 +19,7 @@ use Illuminate\Routing\Controller as BaseController;
  * ),
  *
  * @OA\Server(
- *     url="api/v1"
+ *     url="https://api.alwism.com"
  * ),
  *
  * @OA\ExternalDocumentation(

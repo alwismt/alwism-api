@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "alwism.com - API Documentation",
-        "description": "This is the API Gateway for [www.alwism.com](https://www.alwism.com).  You can find out more about alwism at [https://www.alwism.com/sitemechanism](https://www.alwism.com/sitemechanism) or visit to github repository [github](http://url.cc/).",
+        "description": "This is the API Gateway for [www.alwism.com](https://www.alwism.com).  You can find out more about alwism at [https://www.alwism.com/sitemechanism](https://www.alwism.com/sitemechanism) or visit to github repository [github](https://github.com/alwismt/alwism-api).",
         "contact": {
             "name": "Contact the Developer",
             "url": "https://www.alwism.com/contactme"
@@ -11,7 +11,7 @@
     },
     "servers": [
         {
-            "url": "api/v1"
+            "url": "https://api.alwism.com"
         }
     ],
     "paths": {

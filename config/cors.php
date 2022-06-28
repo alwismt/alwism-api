@@ -25,7 +25,7 @@ return [
     'allowed_methods' => ['*'],
 
     // 'allowed_origins' => ['*'],
-    'allowed_origins' => ['https://www.aslwism.com'],
+    'allowed_origins' => [env('SANCTUM_STATEFUL_DOMAINS')],
 
     'allowed_origins_patterns' => [],
 

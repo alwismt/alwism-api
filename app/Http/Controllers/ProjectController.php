@@ -25,10 +25,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        // $projects = Project::where('status', 'publish')->paginate(15);
         $page = request()->get('page', 1);
         $limit = request()->get('limit', 15);
-        Cache::flush('projects' . $page);
+        // Cache::flush('projects' . $page);
 
         $projects = Cache::remember('projects' . $page, 3600, function() use ($limit){
             return Project::where('status', 'publish')->paginate($limit);
@@ -52,7 +51,7 @@ class ProjectController extends Controller
     {
         $page = request()->get('page', 1);
         $limit = request()->get('limit', 15);
-        Cache::flush('projects' . $page);
+        // Cache::flush('projects' . $page);
 
         $projects = Cache::remember('projects' . $page, 3600, function() use ($limit){
             return Project::paginate($limit);
@@ -85,8 +84,7 @@ class ProjectController extends Controller
                 'success' => false
             ], 200);
         }
-        // $project = Project::where('slug', $slug)->first();
-        Cache::flush('project_' . $slug);
+        // Cache::flush('project_' . $slug);
         $project = Cache::remember('project_' . $slug, 3600, function() use ($slug) {
             return Project::where('slug', $slug)->first();
         });
