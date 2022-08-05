@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+User-agent: *
+Disallow: /assets/
+Disallow: /api/
+Disallow: /fonts/
+
+

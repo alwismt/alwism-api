@@ -1,0 +1,1747 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "alwism.com - API Documentation",
+        "description": "This is the API Gateway for [www.alwism.com](https://www.alwism.com).  You can find out more about alwism at [https://www.alwism.com/sitemechanism](https://www.alwism.com/sitemechanism) or visit to github repository [github](http://url.cc/).",
+        "contact": {
+            "name": "Contact the Developer",
+            "url": "https://www.alwism.com/contactme"
+        },
+        "version": "1.0.3"
+    },
+    "servers": [
+        {
+            "url": "api/v1"
+        }
+    ],
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Non Auth"
+                ],
+                "summary": "Login",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "example@gmail.com",
+                                    "password": "your-secret"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    },
+                    "422": {
+                        "description": "error"
+                    }
+                }
+            }
+        },
+        "/api/admin/logout": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Logout User",
+                "operationId": "db8d26e4c798faabe0c89ea0adfc8c31",
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/user": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Logged User",
+                "operationId": "e8db7ba26333379d865b8539ba3c420a",
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/categories": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Get categories",
+                "operationId": "8bd209fd1d32f30bb6d46372608cc958",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/category": {
+            "post": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Create a new category.",
+                "operationId": "e91983d01da5dbb5dc51e30a24bac7eb",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Category"
+                },
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/category/{id}": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Get category by id",
+                "operationId": "9897a42d312c0c924c7cc1ee34b79c56",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the category that needs to be retrive",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Update an existing category",
+                "operationId": "d0b18842ba2888b0b12f06561f8c8534",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the category that needs to be update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int",
+                            "minimum": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Category"
+                },
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Deletes a category",
+                "operationId": "0d6e5831236c65c6fc12deab36929b27",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/200"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/tags": {
+            "get": {
+                "tags": [
+                    "Non Auth"
+                ],
+                "summary": "Get Tags",
+                "operationId": "b9b2c30a2b2156b07ebf695166e618d8",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Nginx"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2022-04-11T09:25:53Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2022-04-11T09:25:53Z"
+                                                    },
+                                                    "cats": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "properties": {
+                                                                "project_id": {
+                                                                    "type": "number",
+                                                                    "example": 1
+                                                                },
+                                                                "category_id": {
+                                                                    "type": "number",
+                                                                    "example": 1
+                                                                }
+                                                            },
+                                                            "type": "object"
+                                                        }
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/contact": {
+            "post": {
+                "tags": [
+                    "Non Auth"
+                ],
+                "summary": "Submit Contact me",
+                "operationId": "4d33e9ce28a28bf1184927750df24ba8",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "phone": {
+                                                "type": "string"
+                                            },
+                                            "subject": {
+                                                "type": "string"
+                                            },
+                                            "message": {
+                                                "type": "string"
+                                            },
+                                            "recaptcha": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Alwis Madhusanka",
+                                    "email": "example@email.com",
+                                    "phone": "+1 234 567 8900",
+                                    "subject": "regarding ",
+                                    "message": "Some Messege",
+                                    "recaptcha": "recaptcha-verification"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Recaptcha Validation"
+                                        },
+                                        "errors": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "recaptcha": {
+                                                        "type": "string",
+                                                        "example": "validation.recaptcha"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/details": {
+            "get": {
+                "tags": [
+                    "Non Auth"
+                ],
+                "summary": "Get Details",
+                "operationId": "4d7783d031adee56a296894c9442d90a",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "topic": {
+                                                    "type": "string",
+                                                    "example": "Topic"
+                                                },
+                                                "description": {
+                                                    "type": "string",
+                                                    "example": "description"
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Alwis Madhusanka"
+                                                },
+                                                "phone": {
+                                                    "type": "string",
+                                                    "example": "[protected]"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "mail@example.com"
+                                                },
+                                                "skype": {
+                                                    "type": "string",
+                                                    "example": "live:id"
+                                                },
+                                                "address": {
+                                                    "type": "string",
+                                                    "example": "Sri Lanka"
+                                                },
+                                                "experience": {
+                                                    "type": "number",
+                                                    "example": 4
+                                                },
+                                                "whatsapp": {
+                                                    "type": "string",
+                                                    "example": "+44 1234 45625"
+                                                },
+                                                "language": {
+                                                    "type": "string",
+                                                    "example": "English"
+                                                },
+                                                "image": {
+                                                    "type": "string",
+                                                    "example": "path/image.png"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "example": "2022-04-11T09:25:53Z"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "example": "2022-04-11T09:25:53Z"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/siteui/details": {
+            "post": {
+                "tags": [
+                    "siteUi"
+                ],
+                "summary": "Create or update the existing details",
+                "operationId": "570f8768aa42cb33dc95e8ed9b8cc0ab",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Details"
+                },
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/languages": {
+            "get": {
+                "tags": [
+                    "Non Auth"
+                ],
+                "summary": "Display a listing of the resource.",
+                "description": "Get Langusages",
+                "operationId": "787f94fc503d720508bf14747580ce5a",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Go Lang"
+                                                    },
+                                                    "image": {
+                                                        "type": "string",
+                                                        "example": "path/image.png"
+                                                    },
+                                                    "weight": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "example": "2022-04-11T09:25:53Z"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "example": "2022-04-11T09:25:53Z"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/language": {
+            "post": {
+                "tags": [
+                    "languages"
+                ],
+                "summary": "Create a new language",
+                "operationId": "db92e01ce98abb18be2deb0304292ba5",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Languages"
+                },
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/language/{id}": {
+            "get": {
+                "tags": [
+                    "languages"
+                ],
+                "summary": "Get language by ID",
+                "operationId": "b8d7d853b82234c680bdae553e2f3825",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/projects": {
+            "get": {
+                "tags": [
+                    "Non Auth"
+                ],
+                "summary": "Get published projects",
+                "operationId": "8d4a13ef3fc773ff4031e515460919ea",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/GetProjects"
+                    }
+                }
+            }
+        },
+        "/api/admin/projects": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Get All Projects",
+                "operationId": "bd52029fb3c372f16fabc66541a454db",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/GetProjects"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/project/{slug}": {
+            "get": {
+                "tags": [
+                    "Non Auth"
+                ],
+                "summary": "Get Project by slug",
+                "operationId": "7f5f615517bcb9bb443b7925f346b0f8",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/GetbySlug"
+                    }
+                }
+            }
+        },
+        "/api/admin/project/store": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Store a newly created project",
+                "operationId": "0391df77f100b9e9cf58003e063a202e",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Project"
+                },
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "400": {
+                        "description": "bad request: Some/all required fields are empty or Duplicate Slug Url"
+                    },
+                    "406": {
+                        "description": "Not Acceptable: Do not change user Id. for the demonstration please use 3"
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/project/{id}": {
+            "get": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Get Project by ID",
+                "operationId": "1838ecd9ba43e933ba2a5d7eeb6fdd72",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/GetbySlug"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Update the specified project in storage.",
+                "operationId": "3c1330bf05095cada7be449bd8855664",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Project"
+                },
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "400": {
+                        "description": "bad request: Some/all required fields are empty or Duplicate Slug Url"
+                    },
+                    "406": {
+                        "description": "Not Acceptable: Do not change user Id, for the demonstration please use 3,"
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/project/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Remove the specified project from server.",
+                "operationId": "db861c9690a19faba8a104132d1d809a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/urlcheck": {
+            "post": {
+                "tags": [
+                    "Projects"
+                ],
+                "summary": "Check Project Slug Url",
+                "operationId": "273d3433eb5a1abbf02c4da8d272eb77",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "url": {
+                                        "description": "Test Url",
+                                        "type": "string",
+                                        "example": "abc-traders"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "msg": {
+                                            "type": "string",
+                                            "example": "delete todo success"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/sitemechanism": {
+            "get": {
+                "tags": [
+                    "Non Auth"
+                ],
+                "summary": "Get site mechanism",
+                "operationId": "fdaeb43d8da067d592a8fdc1209f1ab6",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Site Mechanism"
+                                        },
+                                        "image": {
+                                            "type": "string",
+                                            "example": "path/image.png"
+                                        },
+                                        "description": {
+                                            "type": "text",
+                                            "example": "Site description"
+                                        },
+                                        "seoTitle": {
+                                            "type": "text",
+                                            "example": "seo Title"
+                                        },
+                                        "seoDescription": {
+                                            "type": "text",
+                                            "example": "Site Description"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "example": "2022-04-11T09:25:53Z"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "example": "2022-04-11T09:25:53Z"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/siteui": {
+            "get": {
+                "tags": [
+                    "Non Auth"
+                ],
+                "summary": "Get Site Ui Data",
+                "operationId": "fc40bc2d3e0cc24a230fb457dd8b68ba",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "number",
+                                                    "example": 1
+                                                },
+                                                "banner": {
+                                                    "type": "string",
+                                                    "example": "path/banner.png"
+                                                },
+                                                "logo": {
+                                                    "type": "string",
+                                                    "example": "path/logo.png"
+                                                },
+                                                "footerText": {
+                                                    "type": "string",
+                                                    "example": "Footer Text"
+                                                },
+                                                "FcopyText": {
+                                                    "type": "string",
+                                                    "example": "Powered & designed by"
+                                                },
+                                                "FSkype": {
+                                                    "type": "string",
+                                                    "example": "live::id"
+                                                },
+                                                "FGithub": {
+                                                    "type": "string",
+                                                    "example": "//github.com/alwismt"
+                                                },
+                                                "FWhatsapp": {
+                                                    "type": "string",
+                                                    "example": "+44 1234 56789"
+                                                },
+                                                "Flinkedin": {
+                                                    "type": "string",
+                                                    "example": "//lk.linkedin.com/"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/siteui/banner": {
+            "post": {
+                "tags": [
+                    "siteUi"
+                ],
+                "summary": "Create or update the existing banner",
+                "operationId": "e3f8cc0da0109b4ab8838266c61c49ab",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UiBanner"
+                },
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/siteui/logo": {
+            "post": {
+                "tags": [
+                    "siteUi"
+                ],
+                "summary": "Create or update the existing logo",
+                "operationId": "b480af98744641c5cec5abeaa701b4fa",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/UiLogo"
+                },
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/admin/siteui/footer": {
+            "post": {
+                "tags": [
+                    "siteUi"
+                ],
+                "summary": "Create or update the existing footer",
+                "operationId": "e091c267f51122b537ba353928e6c501",
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/adfooter"
+                },
+                "responses": {
+                    "200": {
+                        "description": "succes: client's action was received, understood, accepted and responded."
+                    },
+                    "401": {
+                        "description": "unauthorized: Server requires the client to authorize, use login and token"
+                    }
+                },
+                "security": [
+                    {
+                        "apiAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Category": {
+                "title": "Category",
+                "description": "Category model",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Category Name",
+                        "type": "string",
+                        "format": "string",
+                        "default": "Nginx"
+                    }
+                },
+                "type": "object"
+            },
+            "Detail": {
+                "title": "Detail",
+                "description": "Detail model",
+                "required": [
+                    "topic",
+                    "description",
+                    "name",
+                    "email",
+                    "phone",
+                    "whatsapp",
+                    "skype",
+                    "address",
+                    "experience",
+                    "language"
+                ],
+                "properties": {
+                    "topic": {
+                        "title": "topic",
+                        "description": "About details topic",
+                        "type": "string",
+                        "format": "string",
+                        "default": "Well experienced Software Engineer"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "About details description",
+                        "type": "string",
+                        "format": "string",
+                        "default": "description"
+                    },
+                    "name": {
+                        "title": "name",
+                        "description": "About details name",
+                        "type": "string",
+                        "format": "string",
+                        "default": "Alwis Madhusanka"
+                    },
+                    "email": {
+                        "title": "email",
+                        "description": "About details email",
+                        "type": "string",
+                        "format": "string",
+                        "default": "email@example.com"
+                    },
+                    "phone": {
+                        "title": "phone",
+                        "description": "About details phone",
+                        "type": "string",
+                        "format": "string",
+                        "default": "+44 0123 45678"
+                    },
+                    "whatsapp": {
+                        "title": "whatsapp",
+                        "description": "About details whatsapp",
+                        "type": "string",
+                        "format": "string",
+                        "default": "+44 0123 45678"
+                    },
+                    "skype": {
+                        "title": "skype",
+                        "description": "About details skype",
+                        "type": "string",
+                        "format": "string",
+                        "default": "live::skypeid"
+                    },
+                    "address": {
+                        "title": "address",
+                        "description": "About details address",
+                        "type": "string",
+                        "format": "string",
+                        "default": "9 Somewhere, Earth"
+                    },
+                    "experience": {
+                        "title": "experience",
+                        "description": "About details experience",
+                        "type": "integer",
+                        "format": "int",
+                        "default": "5"
+                    },
+                    "language": {
+                        "title": "language",
+                        "description": "About details language",
+                        "type": "string",
+                        "format": "string",
+                        "default": "English, Sinhala"
+                    }
+                },
+                "type": "object"
+            },
+            "Language": {
+                "title": "Language",
+                "description": "Language model",
+                "required": [
+                    "name",
+                    "image",
+                    "weight"
+                ],
+                "properties": {
+                    "name": {
+                        "title": "name",
+                        "description": "Language name",
+                        "type": "string",
+                        "default": "Golang"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "Language Image",
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "weight": {
+                        "title": "weight",
+                        "description": "Language weight",
+                        "type": "integer",
+                        "default": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "Project": {
+                "title": "Project",
+                "description": "Project model",
+                "required": [
+                    "title",
+                    "slug",
+                    "categories",
+                    "image",
+                    "description",
+                    "seoTitle",
+                    "seoDescription",
+                    "status",
+                    "categories"
+                ],
+                "properties": {
+                    "title": {
+                        "title": "title",
+                        "description": "Project title",
+                        "type": "string",
+                        "format": "string",
+                        "default": "Abc Traders"
+                    },
+                    "slug": {
+                        "title": "slug",
+                        "description": "Project Slug",
+                        "type": "string",
+                        "format": "string",
+                        "default": "abc-traders"
+                    },
+                    "categories": {
+                        "title": "categories",
+                        "description": "Project categories - (Multiple Select)",
+                        "type": "string",
+                        "format": "string",
+                        "default": "1,2,3"
+                    },
+                    "image": {
+                        "title": "image",
+                        "description": "Project image",
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "description": {
+                        "title": "description",
+                        "description": "Project description",
+                        "type": "string",
+                        "default": "abc-traders"
+                    },
+                    "seoTitle": {
+                        "title": "seoTitle",
+                        "description": "Project seo title",
+                        "type": "string",
+                        "default": "Abc Traders"
+                    },
+                    "seoDescription": {
+                        "title": "seoDescription",
+                        "description": "Project seo description",
+                        "type": "string",
+                        "default": "Abc Traders"
+                    },
+                    "status": {
+                        "title": "status",
+                        "description": "Project status - It should be 'draft' or 'publish'",
+                        "type": "string",
+                        "default": "draft"
+                    }
+                },
+                "type": "object"
+            },
+            "SiteUi": {
+                "title": "SiteUi",
+                "description": "SiteUi model",
+                "required": [
+                    "banner",
+                    "logo",
+                    "footerText",
+                    "FcopyText"
+                ],
+                "properties": {
+                    "banner": {
+                        "title": "banner",
+                        "description": "Ui banner",
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "logo": {
+                        "title": "logo",
+                        "description": "Logo",
+                        "type": "string",
+                        "format": "binary"
+                    },
+                    "footerText": {
+                        "title": "footerText",
+                        "description": "Footer Text",
+                        "type": "string",
+                        "format": "string",
+                        "default": "I'm currently focused on expanding my experience designing and developing"
+                    },
+                    "FcopyText": {
+                        "title": "FcopyText",
+                        "description": "Footer copy Text",
+                        "type": "string",
+                        "format": "string",
+                        "default": "Powered and designed by Alwis Madhusanka"
+                    },
+                    "FSkype": {
+                        "title": "FSkype",
+                        "description": "Footer Skype",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "FGithub": {
+                        "title": "FGithub",
+                        "description": "Footer Github",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "FWhatsapp": {
+                        "title": "FWhatsapp",
+                        "description": "Footer Whatsapp",
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "Flinkedin": {
+                        "title": "Flinkedin",
+                        "description": "Footer linkedin",
+                        "type": "string",
+                        "format": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "succes: client's action was received, understood, accepted and responded."
+            },
+            "401": {
+                "description": "unauthorized: Server requires the client to authorize. Login with email and password to get the authentication token"
+            },
+            "GetProjects": {
+                "description": "success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "current_page": {
+                                    "type": "number",
+                                    "example": "1"
+                                },
+                                "data": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Project"
+                                    }
+                                },
+                                "first_page_url": {
+                                    "type": "string",
+                                    "example": "url/api/projects?page=1"
+                                },
+                                "from": {
+                                    "type": "number",
+                                    "example": "1"
+                                },
+                                "last_page": {
+                                    "type": "number",
+                                    "example": "1"
+                                },
+                                "last_page_url": {
+                                    "type": "string",
+                                    "example": "url/api/projects?page=3"
+                                },
+                                "links": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "url": {
+                                                "type": "string",
+                                                "example": "url/api/projects?page=1"
+                                            },
+                                            "label": {
+                                                "type": "string",
+                                                "example": "&laquo; Previous"
+                                            },
+                                            "active": {
+                                                "type": "boolean",
+                                                "example": "false"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "next_page_url": {
+                                    "type": "string",
+                                    "example": "null"
+                                },
+                                "path": {
+                                    "type": "string",
+                                    "example": "url/api/projects"
+                                },
+                                "per_page": {
+                                    "type": "number",
+                                    "example": "15"
+                                },
+                                "prev_page_url": {
+                                    "type": "string",
+                                    "example": "url/api/projects?page=1"
+                                },
+                                "to": {
+                                    "type": "number",
+                                    "example": "2"
+                                },
+                                "total": {
+                                    "type": "number",
+                                    "example": "2"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "GetbySlug": {
+                "description": "success",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "success": {
+                                    "type": "boolean",
+                                    "example": "true"
+                                },
+                                "slug": {
+                                    "type": "string",
+                                    "example": "abc-car-traders"
+                                },
+                                "data": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "userId": {
+                                            "type": "number",
+                                            "example": "1"
+                                        },
+                                        "title": {
+                                            "type": "string",
+                                            "example": "Ebook LTD ASP.NET MVC 6"
+                                        },
+                                        "slug": {
+                                            "type": "string",
+                                            "example": "abc-car-traders"
+                                        },
+                                        "image": {
+                                            "type": "string",
+                                            "example": "path/image.png"
+                                        },
+                                        "description": {
+                                            "type": "text",
+                                            "example": "Project Description"
+                                        },
+                                        "seoTitle": {
+                                            "type": "string",
+                                            "example": "ABC Car Traders"
+                                        },
+                                        "seoDescription": {
+                                            "type": "string",
+                                            "example": "SEO Description"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "publish"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "categories": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Go Lang"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "categories": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": "1"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Go Lang"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        },
+        "requestBodies": {
+            "Project": {
+                "description": "Project Request Body",
+                "required": true,
+                "content": {
+                    "multipart/form-data": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Project"
+                        }
+                    },
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Project"
+                        }
+                    }
+                }
+            },
+            "Category": {
+                "description": "Category Request Body",
+                "required": true,
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Category"
+                        }
+                    },
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Category"
+                        }
+                    }
+                }
+            },
+            "UiBanner": {
+                "description": "Ui Banner Request Body",
+                "required": true,
+                "content": {
+                    "multipart/form-data": {
+                        "schema": {
+                            "title": "UiBanner",
+                            "required": [
+                                "image"
+                            ],
+                            "properties": {
+                                "image": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/banner"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "UiLogo": {
+                "description": "Ui Banner Request Body",
+                "required": true,
+                "content": {
+                    "multipart/form-data": {
+                        "schema": {
+                            "title": "UiBanner",
+                            "required": [
+                                "image"
+                            ],
+                            "properties": {
+                                "image": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/logo"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "adfooter": {
+                "description": "Footer Request Body",
+                "required": true,
+                "content": {
+                    "multipart/x-www-form-urlencoded": {
+                        "schema": {
+                            "title": "footerText",
+                            "required": [
+                                "footerText",
+                                "FcopyText"
+                            ],
+                            "properties": {
+                                "footerText": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/footerText"
+                                },
+                                "FcopyText": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/FcopyText"
+                                },
+                                "FSkype": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/FSkype"
+                                },
+                                "FGithub": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/FGithub"
+                                },
+                                "FWhatsapp": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/FWhatsapp"
+                                },
+                                "Flinkedin": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/Flinkedin"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "footerText": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/footerText"
+                                },
+                                "FcopyText": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/FcopyText"
+                                },
+                                "FSkype": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/FSkype"
+                                },
+                                "FGithub": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/FGithub"
+                                },
+                                "FWhatsapp": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/FWhatsapp"
+                                },
+                                "Flinkedin": {
+                                    "$ref": "#/components/schemas/SiteUi/properties/Flinkedin"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "Details": {
+                "description": "Details Request Body",
+                "required": true,
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Detail"
+                        }
+                    },
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Detail"
+                        }
+                    }
+                }
+            },
+            "Languages": {
+                "description": "Languages Request Body",
+                "required": true,
+                "content": {
+                    "multipart/form-data": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Language"
+                        }
+                    },
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Language"
+                        }
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "apiAuth": {
+                "type": "http",
+                "description": "Login with email and password to get the authentication token",
+                "name": "Token based Based",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Visit to [www.alwism.com]",
+        "url": "https://www.alwism.com"
+    }
+}
